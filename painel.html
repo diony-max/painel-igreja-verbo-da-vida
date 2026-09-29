@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Telão - Painel de Chamadas</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="painel-body">
+
+<div class="painel-container">
+
+  <header class="painel-topo">
+    <div class="painel-topo-esq">
+      <img src="logoigreja.png" alt="Logo" class="painel-logo-topo" onerror="this.style.display='none'">
+      <span class="painel-nome" id="painel-nome">Igreja verbo da vida </span>
+    </div>
+    <div class="painel-relogio" id="painel-relogio"></div>
+  </header>
+
+  <main class="painel-main">
+
+    <!-- IDLE -->
+    <div class="painel-idle" id="painel-idle">
+      <img src="logoigreja.png" alt="Logo" class="painel-logo-idle" onerror="this.style.display='none'">
+      <h1>Aguardando chamadas</h1>
+      <p>As chamadas aparecerão aqui automaticamente</p>
+    </div>
+
+    <!-- CHAMADA ATIVA -->
+    <div class="painel-chamada" id="painel-chamada" style="display:none;">
+      <div class="chamada-topo" id="chamada-topo">DEPARTAMENTO INFANTIL</div>
+      <div class="chamada-emoji" id="chamada-emoji">🧒</div>
+      <div class="chamada-numero" id="chamada-numero">000</div>
+      <div class="chamada-frase" id="chamada-frase">COMPARECER AO DEPARTAMENTO INFANTIL</div>
+    </div>
+  </main>
+
+  <footer class="painel-rodape">
+    <div class="rodape-titulo">📋 Últimas chamadas</div>
+    <div class="rodape-lista" id="painel-historico">
+      <span class="rodape-vazio">—</span>
+    </div>
+  </footer>
+
+</div>
+
+<script src="painel.js"></script>
+</body>
+</html>

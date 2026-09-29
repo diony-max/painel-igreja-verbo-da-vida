@@ -1,0 +1,700 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg-900: #0a0e1a;
+  --bg-800: #0f1626;
+  --bg-700: #151d33;
+  --bg-600: #1c2742;
+  --border: #253050;
+  --texto: #e2e8f0;
+  --texto-muted: #94a3b8;
+  --texto-fraco: #64748b;
+  --verde: #10b981;
+  --verde-escuro: #059669;
+  --ambar: #f59e0b;
+  --roxo: #8b5cf6;
+  --azul: #3b82f6;
+  --vermelho: #ef4444;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-900);
+  color: var(--texto);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.view { display: none; min-height: 100vh; }
+.view.ativo { display: block; }
+
+/* ================= LOGIN ================= */
+#view-login {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top, #1e293b 0%, #0a0e1a 70%);
+  padding: 20px;
+}
+#view-login.ativo { display: flex; }
+
+.login-box {
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg-800);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 40px 32px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  animation: fadeUp 0.4s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.login-logo-img {
+  width: 140px;
+  height: auto;
+  margin-bottom: 16px;
+}
+
+.login-box h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #fff, #93c5fd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.login-sub {
+  color: var(--texto-muted);
+  font-size: 0.85rem;
+  margin-bottom: 28px;
+}
+
+.login-box label { display: block; text-align: left; margin-bottom: 14px; }
+
+.login-box label span {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--texto-muted);
+  font-weight: 600;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--bg-700);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--texto);
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.login-box input:focus {
+  border-color: var(--azul);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.login-box .btn { width: 100%; margin-top: 8px; }
+.login-erro { color: var(--vermelho); font-size: 0.82rem; margin-top: 12px; min-height: 18px; }
+
+.login-hint {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  font-size: 0.72rem;
+  color: var(--texto-fraco);
+}
+.login-hint strong { color: var(--texto-muted); }
+
+/* ================= TOPBAR ================= */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: var(--bg-800);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.topbar-left, .topbar-right { display: flex; align-items: center; gap: 12px; }
+.topbar-logo { width: 44px; height: 44px; object-fit: contain; }
+.topbar-title { font-size: 1rem; font-weight: 700; color: var(--texto); }
+.topbar-sub { font-size: 0.72rem; color: var(--texto-muted); }
+
+.btn-icon {
+  background: var(--bg-700);
+  border: 1px solid var(--border);
+  color: var(--texto);
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.btn-icon:hover { background: var(--bg-600); border-color: var(--azul); transform: translateY(-2px); }
+
+/* ================= HOME (CARDS) ================= */
+.home-cards {
+  padding: 40px 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.modulo-card {
+  background: var(--bg-800);
+  border: 2px solid var(--border);
+  border-radius: 18px;
+  padding: 32px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.modulo-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, var(--card-color, #10b981), transparent 60%);
+  opacity: 0.08;
+  transition: opacity 0.3s;
+}
+
+.modulo-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--card-color, #10b981);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.modulo-card:hover::before { opacity: 0.15; }
+
+.modulo-infantil       { --card-color: #10b981; }
+.modulo-estacionamento { --card-color: #f59e0b; }
+.modulo-reuniao        { --card-color: #8b5cf6; }
+
+/* LOGO no card (mesmo tamanho do emoji) */
+.modulo-logo {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  margin: 0 auto 16px auto;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+/* EMOJI no card */
+.modulo-emoji {
+  font-size: 4rem;
+  line-height: 1;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+.modulo-card h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 1;
+  color: var(--texto);
+}
+
+.modulo-card p {
+  color: var(--texto-muted);
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-chamar-card {
+  background: var(--card-color, #10b981);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-chamar-card:hover {
+  filter: brightness(1.15);
+  transform: translateY(-2px);
+}
+
+.home-footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--texto-fraco);
+  font-size: 0.85rem;
+}
+.home-footer strong { color: var(--texto); }
+
+/* ================= OPERADOR ================= */
+.operador-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 24px;
+  padding: 30px 24px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.operador-painel {
+  background: var(--bg-800);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 32px;
+}
+
+.operador-modulo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 28px;
+}
+
+/* LOGO no painel do operador */
+.operador-logo {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* EMOJI no painel do operador */
+.modulo-emoji-lg {
+  font-size: 3.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.operador-modulo h2 { font-size: 1.4rem; font-weight: 800; color: var(--texto); }
+.operador-modulo p { color: var(--texto-muted); font-size: 0.85rem; margin-top: 4px; }
+
+.input-numero { margin-bottom: 20px; }
+
+.input-numero label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--texto-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+
+.input-numero input {
+  width: 100%;
+  padding: 22px 24px;
+  font-size: 3rem;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: 8px;
+  background: var(--bg-700);
+  border: 3px solid var(--border);
+  border-radius: 16px;
+  color: var(--texto);
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.input-numero input:focus {
+  border-color: var(--azul);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+}
+
+.operador-acoes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.atalhos {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--texto-fraco);
+}
+
+kbd {
+  background: var(--bg-700);
+  border: 1px solid var(--border);
+  padding: 2px 8px;
+  border-radius: 5px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.75rem;
+  color: var(--texto);
+}
+
+.operador-historico {
+  background: var(--bg-800);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 24px;
+  height: fit-content;
+  max-height: calc(100vh - 140px);
+  display: flex;
+  flex-direction: column;
+}
+
+.operador-historico h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--texto);
+}
+
+.historico-lista { flex: 1; overflow-y: auto; margin-bottom: 14px; }
+
+.vazio-historico {
+  text-align: center;
+  color: var(--texto-fraco);
+  font-style: italic;
+  font-size: 0.85rem;
+  padding: 20px;
+}
+
+.historico-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  background: var(--bg-700);
+  border-radius: 10px;
+  margin-bottom: 8px;
+  border-left: 3px solid var(--cor, #10b981);
+  animation: fadeUp 0.3s ease;
+}
+
+.historico-item-info { display: flex; align-items: center; gap: 10px; }
+.historico-item-emoji { font-size: 1.4rem; }
+.historico-item-modulo { font-size: 0.75rem; color: var(--texto-muted); }
+.historico-item-numero { font-size: 1.2rem; font-weight: 800; color: var(--texto); }
+.historico-item-hora { font-size: 0.7rem; color: var(--texto-fraco); }
+
+/* ================= BOTÕES ================= */
+.btn {
+  padding: 12px 20px;
+  border-radius: 10px;
+  border: none;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+.btn-primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+}
+
+.btn-secondary {
+  background: var(--bg-700);
+  color: var(--texto);
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover { background: var(--bg-600); border-color: var(--azul); }
+
+.btn-grande { padding: 20px; font-size: 1.15rem; letter-spacing: 1px; }
+
+.btn-text {
+  background: transparent;
+  border: none;
+  color: var(--texto-muted);
+  font-family: inherit;
+  font-size: 0.78rem;
+  cursor: pointer;
+  padding: 8px;
+  text-align: center;
+  transition: color 0.2s;
+  width: 100%;
+}
+.btn-text:hover { color: var(--vermelho); }
+
+/* ================= MODAL ================= */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+}
+.modal.ativo { display: flex; }
+
+.modal-box {
+  background: var(--bg-800);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 32px;
+  max-width: 500px;
+  width: 100%;
+  animation: fadeUp 0.3s ease;
+}
+
+.modal-box h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.config-label { display: block; margin-bottom: 18px; }
+.config-label span { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; }
+.config-label small { display: block; font-size: 0.72rem; color: var(--texto-fraco); margin-bottom: 8px; }
+
+.config-label input {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--bg-700);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--texto);
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.config-info {
+  background: var(--bg-700);
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 0.78rem;
+  color: var(--texto-muted);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.modal-acoes { display: flex; gap: 10px; justify-content: flex-end; }
+
+/* ================= PAINEL (TELÃO) ================= */
+.painel-body {
+  overflow: hidden;
+  background: #000;
+  color: white;
+  height: 100vh;
+}
+
+.painel-container { display: flex; flex-direction: column; height: 100vh; }
+
+.painel-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background: rgba(0,0,0,0.5);
+  border-bottom: 2px solid rgba(255,255,255,0.08);
+}
+
+.painel-topo-esq { display: flex; align-items: center; gap: 14px; }
+.painel-logo-topo { width: 50px; height: 50px; object-fit: contain; }
+.painel-nome { font-size: 1.2rem; font-weight: 700; }
+
+.painel-relogio {
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 1px;
+}
+
+.painel-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* IDLE */
+.painel-idle { text-align: center; opacity: 0.6; }
+
+.painel-logo-idle {
+  width: 220px;
+  height: auto;
+  margin-bottom: 24px;
+  animation: pulseSoft 3s infinite ease-in-out;
+}
+
+@keyframes pulseSoft {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50%      { opacity: 1; transform: scale(1.05); }
+}
+
+.painel-idle h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
+.painel-idle p { font-size: 1.1rem; color: #94a3b8; }
+
+/* CHAMADA ATIVA */
+.painel-chamada {
+  text-align: center;
+  animation: chamadaEntrada 0.6s ease;
+  width: 100%;
+}
+
+@keyframes chamadaEntrada {
+  0%   { opacity: 0; transform: scale(0.7); }
+  60%  { transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.chamada-logo {
+  width: 150px;
+  height: auto;
+  margin-bottom: 16px;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-15px); }
+}
+
+.chamada-topo {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+  color: var(--chamada-cor, #10b981);
+  text-shadow: 0 0 30px var(--chamada-cor, #10b981);
+}
+
+.chamada-numero {
+  font-size: 16rem;
+  font-weight: 900;
+  line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -8px;
+  color: white;
+  text-shadow: 0 0 60px var(--chamada-cor, #10b981),
+               0 0 120px var(--chamada-cor, #10b981);
+  animation: piscar 2s infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes piscar {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.75; }
+}
+
+.chamada-frase {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 2px;
+  padding: 16px 30px;
+  display: inline-block;
+  border-top: 3px solid var(--chamada-cor, #10b981);
+  border-bottom: 3px solid var(--chamada-cor, #10b981);
+}
+
+.painel-rodape {
+  padding: 16px 32px;
+  background: rgba(0,0,0,0.6);
+  border-top: 2px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.rodape-titulo { font-size: 0.85rem; color: #94a3b8; font-weight: 600; white-space: nowrap; }
+.rodape-lista { display: flex; gap: 12px; overflow-x: auto; flex: 1; }
+.rodape-vazio { color: #475569; font-style: italic; font-size: 0.9rem; }
+
+.rodape-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.06);
+  padding: 8px 14px;
+  border-radius: 8px;
+  border-left: 3px solid var(--cor, #10b981);
+  white-space: nowrap;
+  animation: fadeUp 0.4s ease;
+}
+
+.rodape-item-emoji { font-size: 1.1rem; }
+.rodape-item-numero { font-weight: 800; font-size: 1rem; font-variant-numeric: tabular-nums; }
+
+/* ================= RESPONSIVO ================= */
+@media (max-width: 900px) {
+  .operador-grid { grid-template-columns: 1fr; }
+  .operador-historico { max-height: 400px; }
+}
+
+@media (max-width: 600px) {
+  .topbar { padding: 12px 16px; }
+  .btn-icon { width: 38px; height: 38px; font-size: 1rem; }
+  .home-cards { padding: 20px 16px; gap: 14px; }
+  .modulo-card { padding: 24px 18px; }
+  .modulo-logo { width: 56px; height: 56px; }
+  .modulo-emoji { font-size: 3rem; }
+  .operador-grid { padding: 16px; }
+  .operador-painel { padding: 20px; }
+  .input-numero input { font-size: 2.2rem; padding: 18px; }
+  .btn-grande { padding: 16px; font-size: 1rem; }
+  .operador-acoes { grid-template-columns: 1fr; }
+  .chamada-numero { font-size: 8rem; letter-spacing: -4px; }
+  .chamada-logo { width: 100px; }
+  .chamada-topo { font-size: 1.2rem; letter-spacing: 2px; }
+  .chamada-frase { font-size: 1.1rem; padding: 10px 16px; }
+  .painel-idle h1 { font-size: 1.5rem; }
+  .painel-idle p { font-size: 0.9rem; }
+  .painel-logo-idle { width: 140px; }
+  .painel-relogio { font-size: 1rem; }
+  .painel-nome { font-size: 0.9rem; }
+  .login-logo-img { width: 100px; }
+  .operador-logo { width: 70px; height: 70px; }
+}

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel de Chamadas - Igreja</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ LOGIN ============ -->
+<div id="view-login" class="view ativo">
+  <div class="login-box">
+    <img src="" alt="logo" class="login-logo-img" onerror="this.style.display='none'">
+    <h1>Painel de Chamadas</h1>
+    <p class="login-sub">Sistema da Igreja</p>
+    <form id="form-login">
+      <label>
+        <span>Usuário</span>
+        <input type="text" id="login-user" placeholder="Usuário" required autocomplete="off">
+      </label>
+      <label>
+        <span>Senha</span>
+        <input type="password" id="login-pass" placeholder="Senha" required>
+      </label>
+      <button type="submit" class="btn btn-primary">🔓 Entrar</button>
+      <div class="login-erro" id="login-erro"></div>
+    </form>
+    <div class="login-hint">
+      Usuário padrão: <strong>admin</strong> · Senha: <strong>igreja2024</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ============ HOME (CARDS) ============ -->
+<div id="view-home" class="view">
+  <header class="topbar">
+    <div class="topbar-left">
+      <img src="logoigreja.png" alt="Logo" class="topbar-logo" onerror="this.style.display='none'">
+      <div>
+        <div class="topbar-title">Painel de Chamadas</div>
+        <div class="topbar-sub" id="home-relogio"></div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <button class="btn-icon" id="btn-abrir-painel" title="Abrir Telão">🖥️</button>
+      <button class="btn-icon" id="btn-config" title="Configurações">⚙️</button>
+      <button class="btn-icon" id="btn-sair" title="Sair">🚪</button>
+    </div>
+  </header>
+
+  <div class="home-cards">
+    <div class="modulo-card modulo-infantil" data-modulo="infantil">
+      <img src="logo.png" alt="Logo" class="modulo-logo" onerror="this.style.display='none'">
+      <h2>Departamento Infantil</h2>
+      <p>Chamar os pais das crianças</p>
+      <button class="btn-chamar-card">Abrir Painel →</button>
+    </div>
+
+    <div class="modulo-card modulo-estacionamento" data-modulo="estacionamento">
+      <div class="modulo-emoji">🚗</div>
+      <h2>Estacionamento</h2>
+      <p>Chamar proprietários de veículos</p>
+      <button class="btn-chamar-card">Abrir Painel →</button>
+    </div>
+
+    <div class="modulo-card modulo-reuniao" data-modulo="reuniao">
+      <div class="modulo-emoji">📢</div>
+      <h2>Reunião</h2>
+      <p>Chamar para a sala de reunião</p>
+      <button class="btn-chamar-card">Abrir Painel →</button>
+    </div>
+  </div>
+
+  <div class="home-footer">
+    💡 Dica: abra o <strong>Telão</strong> em outra janela e deixe em tela cheia no projetor/TV
+  </div>
+</div>
+
+<!-- ============ OPERADOR ============ -->
+<div id="view-operador" class="view">
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="btn-icon" id="btn-voltar">←</button>
+      <div>
+        <div class="topbar-title" id="op-titulo">Departamento Infantil</div>
+        <div class="topbar-sub" id="op-relogio"></div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <button class="btn-icon" id="btn-abrir-painel-2" title="Abrir Telão">🖥️</button>
+    </div>
+  </header>
+
+  <div class="operador-grid">
+    <div class="operador-painel">
+      <div class="operador-modulo" id="op-modulo-info">
+        <img src="logo.png" alt="Logo" class="operador-logo" id="op-logo" onerror="this.style.display='none'">
+        <div>
+          <h2 id="op-nome">Departamento Infantil</h2>
+          <p id="op-desc">Digite o número da ficha para chamar</p>
+        </div>
+      </div>
+
+      <div class="input-numero">
+        <label>Número da ficha:</label>
+        <input type="text" id="op-numero" placeholder="000" inputmode="numeric" maxlength="10" autofocus>
+      </div>
+
+      <div class="operador-acoes">
+        <button class="btn btn-primary btn-grande" id="btn-chamar">📢 CHAMAR</button>
+        <button class="btn btn-secondary" id="btn-limpar-tela">🧹 Limpar Telão</button>
+      </div>
+
+      <div class="atalhos">
+        💡 Dica: pressione <kbd>Enter</kbd> para chamar rapidamente
+      </div>
+    </div>
+
+    <div class="operador-historico">
+      <h3>📋 Últimas chamadas</h3>
+      <div id="op-historico" class="historico-lista">
+        <div class="vazio-historico">Nenhuma chamada realizada</div>
+      </div>
+      <button class="btn-text" id="btn-limpar-historico">Limpar histórico</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ MODAL CONFIG ============ -->
+<div id="modal-config" class="modal">
+  <div class="modal-box">
+    <h2>⚙️ Configurações</h2>
+
+    <label class="config-label">
+      <span>Código da Igreja</span>
+      <small>Compartilhe com todos os dispositivos</small>
+      <input type="text" id="cfg-codigo" placeholder="ex: igreja-verbo">
+    </label>
+
+    <label class="config-label">
+      <span>Nome da Igreja</span>
+      <input type="text" id="cfg-nome" placeholder="Nome da igreja">
+    </label>
+
+    <div class="config-info">
+      <p>💡 Abra o telão em outra janela (🖥️) e deixe em tela cheia no projetor.</p>
+      <p>📱 Use o mesmo Código da Igreja em todos os celulares.</p>
+    </div>
+
+    <div class="modal-acoes">
+      <button class="btn btn-secondary" id="btn-cancelar-config">Cancelar</button>
+      <button class="btn btn-primary" id="btn-salvar-config">💾 Salvar</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
